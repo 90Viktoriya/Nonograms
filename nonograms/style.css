@@ -1,0 +1,28 @@
+:root {
+  --cell_width: 30px;
+  --background_light: darkkhaki;
+}
+
+.main__wrapper {
+  width: 100%;
+  display: flex;
+  /*justify-content: center;
+  align-items: center;
+  margin: 0 auto;*/
+  background-color: var(--background_light);
+  height: 100px;
+}
+.cross__wrapper {
+  width: 100%;
+  display: grid;
+}
+.cross__empty_item {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.cross__top_clue {
+  grid-row-start: 1;
+}
+.cross__left_clue {
+  grid-column-start: 1;
+}
