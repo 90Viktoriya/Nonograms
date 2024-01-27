@@ -1,28 +1,52 @@
 :root {
   --cell_width: 30px;
+  --lclue_length: 1;
+  --tclue_length: 1;
+  --game_length: 5;
   --background_light: darkkhaki;
+  --border_dark: green;
 }
 
 .main__wrapper {
   width: 100%;
   display: flex;
-  /*justify-content: center;
+  justify-content: center;
   align-items: center;
-  margin: 0 auto;*/
   background-color: var(--background_light);
-  height: 100px;
 }
 .cross__wrapper {
   width: 100%;
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: repeat(calc(var(--game_length) + var(--lclue_length)), 1fr);
+  grid-template-rows: repeat(calc(var(--game_length) + var(--tclue_length)), 1fr);
+  aspect-ratio: 1 / 1;
+}
+
+.cross__top_clue {
+  border: 1px solid var(--border_dark);
+  grid-row-start: 1;
+  grid-row-end: span var(--tclue_length);
+  grid-column-start: calc(var(--lclue_length) + 1);
+  grid-column-end: calc(var(--lclue_length) + 1 + var(--game_length));
   display: grid;
 }
-.cross__empty_item {
-  grid-column-start: 1;
-  grid-row-start: 1;
-}
-.cross__top_clue {
-  grid-row-start: 1;
-}
 .cross__left_clue {
+  border: 1px solid var(--border_dark);
   grid-column-start: 1;
+  grid-column-end: span var(--lclue_length);
+  grid-row-start: calc(var(--tclue_length) + 1);
+  grid-row-end: calc(var(--tclue_length) + 1 + var(--game_length));
+  display: grid;
 }
+.cross__clue_item {
+  border: 1px solid var(--border_dark);
+  grid-column-end: span 1;
+  grid-row-end: span 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+

@@ -6,8 +6,8 @@ class Game {
     this.length = data[this.gameId].result.length;
     this.LClue = this.getLClue();
     this.TClue = this.getTClue();
-    this.LClue.length = this.getClueLenght(this.LClue);
-    this.TClue.length = this.getClueLenght(this.TClue);
+    this.LClue_length = this.getClueLenght(this.LClue);
+    this.TClue_length = this.getClueLenght(this.TClue);
   }
 
   getLClue() {
@@ -17,7 +17,8 @@ class Game {
       lClue[i] = this.getClueRow(data[this.gameId].result[i]);
     }
     return lClue;
-  };
+  }
+
   getClueLenght(Clue) {
     let result = 0; 
     for (let i = 0; i < Clue.length; i += 1) {
