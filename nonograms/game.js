@@ -8,8 +8,21 @@ class Game {
     this.TClue = this.getTClue();
     this.LClue_length = this.getClueLenght(this.LClue);
     this.TClue_length = this.getClueLenght(this.TClue);
+    this.result = this.getResultSet();
   }
 
+  getResultSet() {
+    const result = data[this.gameId].result;
+    let resultSet = new Set;
+    let count = 0;
+    for (let i = 0; i < result.length; i += 1) {
+      for (let j = 0; j < result.length; j += 1) {
+        if (result[i][j]) resultSet.add(count.toString());
+        count += 1;
+      }
+    }
+    return resultSet;
+  }
   getLClue() {
     const length = data[this.gameId].result.length;
     let lClue = Array(length);

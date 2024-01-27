@@ -48,5 +48,28 @@
   align-items: center;
   justify-content: center;
 }
+.cross__data {
+  grid-row-start: calc(var(--tclue_length) + 1);
+  grid-row-end: calc(var(--tclue_length) + 1 + var(--game_length));
+  grid-column-start: calc(var(--lclue_length) + 1);
+  grid-column-end: calc(var(--lclue_length) + 1 + var(--game_length));
+  display: grid;
+}
+.cross__data_item {
+  border: 1px solid var(--border_dark);
+  grid-column-end: span 1;
+  grid-row-end: span 1;
+}
+.cross__data_item-black {
+  background-color: black;
+  border-color: black;
+}
+.cross__data_item-cross {
+  border-color: black;
+  background:
+  linear-gradient(45deg, transparent 48%, #000 48%, #000 52%, transparent 52%),
+  linear-gradient(-45deg, transparent 48%, #000 48%, #000 52%, transparent 52%);
+}
+
 
 

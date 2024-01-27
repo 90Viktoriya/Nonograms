@@ -1,4 +1,3 @@
-/*import game from "./game.js";*/
 import createElement from "./createElement.js";
 
 function fillClues(newGame, cross_wrapper) {
@@ -7,7 +6,6 @@ function fillClues(newGame, cross_wrapper) {
   cross_wrapper.style = '--lclue_length: ' + newGame.LClue_length.toString() + '; --tclue_length: ' + newGame.TClue_length.toString() + '; --game_length: ' + newGame.length.toString() + ';';
   cross_wrapper.append(top_clue);
   cross_wrapper.append(left_clue);
-  console.log(newGame.LClue);
   for (let i = 0; i < newGame.length; i += 1) {
     let count = 0;
     for (let j = newGame.LClue[i].length; j > 0; j -= 1) {
