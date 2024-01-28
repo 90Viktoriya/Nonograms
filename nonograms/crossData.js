@@ -5,9 +5,11 @@ let sellSet = new Set;
 
 function rightClick(e) {
   e.preventDefault();
-  e.target.classList.remove('cross__data_item-black');
-  e.target.classList.toggle('cross__data_item-cross');
-  if (sellSet.has(e.target.id)) sellSet.delete(e.target.id);
+  if (e.target.classList.contains('cross__data_item')) {
+    e.target.classList.remove('cross__data_item-black');
+    e.target.classList.toggle('cross__data_item-cross');
+    if (sellSet.has(e.target.id)) sellSet.delete(e.target.id);
+  }
 }
 function fillData (newGame, cross_data) {
   let count = 0;
@@ -26,13 +28,11 @@ function fillData (newGame, cross_data) {
   cross_data.addEventListener('contextmenu', rightClick);
   
   function fillCell(e) {
-  if (e) {
+  if (e.target.classList.contains('cross__data_item')) {
     e.target.classList.toggle('cross__data_item-black');
+    e.target.classList.remove('cross__data_item-cross');
     sellSet.has(e.target.id)? sellSet.delete(e.target.id) : sellSet.add(e.target.id);
   }
-
-  console.log([...sellSet].sort());
-  console.log([...resultSet].sort());
   if ([...sellSet].sort().join() === [...resultSet].sort().join())
     console.log('win');
 }
