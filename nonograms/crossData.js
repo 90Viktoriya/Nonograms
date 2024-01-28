@@ -15,6 +15,14 @@ function fillData (newGame, cross_data) {
   let count = 0;
   let resultSet = newGame.getResultSet();
   for (let i = 0; i < newGame.length; i += 1) {
+    if ((i + 1) % 5 === 0 && i + 1 < newGame.length) {
+      let border_item = createElement('div','cross__data_border_bottom');
+      border_item.style.gridRowStart = i + 2;
+      cross_data.append(border_item);
+      let border_item2 = createElement('div','cross__data_border_right');
+      border_item2.style.gridColumnStart = i + 2;
+      cross_data.append(border_item2);
+    }
     for (let j = 0; j < newGame.length; j += 1) {
       let data_item = createElement('div', 'cross__data_item');
       data_item.id = count;

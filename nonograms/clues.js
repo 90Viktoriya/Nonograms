@@ -8,6 +8,11 @@ function fillClues(newGame, cross_wrapper) {
   cross_wrapper.append(left_clue);
   for (let i = 0; i < newGame.length; i += 1) {
     let count = 0;
+    if ((i + 1) % 5 === 0) {
+      let border_item = createElement('div','cross__border_bottom');
+      border_item.style.gridRowStart = i + 1;
+      left_clue.append(border_item);
+    }
     for (let j = newGame.LClue[i].length; j > 0; j -= 1) {
       let clue_item = createElement('div', 'cross__clue_item', newGame.LClue[i][j - 1]);
       clue_item.style.gridColumnStart = newGame.LClue_length - count;
@@ -16,6 +21,11 @@ function fillClues(newGame, cross_wrapper) {
       left_clue.append(clue_item);
     }
     count = 0;
+    if ((i + 1) % 5 === 0) {
+      let border_item = createElement('div','cross__border_right');
+      border_item.style.gridColumnStart = i + 1;
+      top_clue.append(border_item);
+    }
     for (let j = newGame.TClue[i].length; j > 0; j -= 1) {
       let clue_item = createElement('div', 'cross__clue_item', newGame.TClue[i][j - 1]);
       clue_item.style.gridRowStart = newGame.TClue_length - count;

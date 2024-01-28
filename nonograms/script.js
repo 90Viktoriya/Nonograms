@@ -4,7 +4,7 @@ import fillData from "./crossData.js"
 import createElement from "./createElement.js";
 
 
-let currentGameId = 0;
+let currentGameId = 7;
 let newGame = new game(currentGameId);
 
 let main_wrapper = createElement('div','main__wrapper');
