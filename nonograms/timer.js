@@ -1,10 +1,10 @@
 import createElement from "./createElement.js";
 
-export let startTime;
+let startTime;
 let timer;
 export function startTimer() {
   startTime = new Date();
-  setInterval(() => {
+  let timerID = setInterval(() => {
     let diff = Math.floor((new Date - startTime) / 1000);
     let hour = ('0' + Math.floor(diff / 3600)).slice(-2);
     let minute = ('0' + Math.floor((diff % 3600) / 60)).slice(-2);
@@ -15,6 +15,11 @@ export function startTimer() {
     else
       timer.textContent = minute + ':' + second;
   }, 1000);
+  return timerID;
+}
+export function stopTimer(timerID) {
+  clearInterval(timerID);
+  return Math.floor((new Date - startTime) / 1000);
 }
 function displayTimer(game_wrapper) {
   timer = createElement('time', 'game__timer','00:00');

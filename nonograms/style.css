@@ -4,7 +4,7 @@
   --tclue_length: 1;
   --game_length: 5;
   --background_light: darkkhaki;
-  --border_dark: green;
+  --background_dark: darkolivegreen;
   --border_dark: green;
 }
 
@@ -128,6 +128,38 @@
   linear-gradient(45deg, transparent 48%, #000 48%, #000 52%, transparent 52%),
   linear-gradient(-45deg, transparent 48%, #000 48%, #000 52%, transparent 52%);
 }
+
+.modal__wrapper {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 32px;
+}
+.modal__data {
+  display:flex;
+  flex-direction: column;
+  padding: 40px;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  background: var(--background_light);
+  z-index: 5;   
+}
+.modal__button {
+  background: var(--background_dark);
+  width: 50%;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 32px;
+}
+
 
 
 

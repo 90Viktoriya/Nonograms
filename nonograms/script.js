@@ -5,7 +5,7 @@ import createElement from "./createElement.js";
 import displayTimer from "./timer.js";
 
 
-let currentGameId = 7;
+let currentGameId = 0;
 let newGame = new game(currentGameId);
 
 let main_wrapper = createElement('div', 'main__wrapper');

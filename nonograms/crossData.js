@@ -1,12 +1,13 @@
 import createElement from "./createElement.js";
-import { startTime, startTimer } from "./timer.js";
+import { startTimer, stopTimer } from "./timer.js";
+import loadModal from "./modal.js";
 let sellSet = new Set;
-
+let timerID = 0;
 
 function rightClick(e) {
   e.preventDefault();
   if (e.target.classList.contains('cross__data_item')) {
-    if (startTime === undefined) startTimer();
+    if (timerID === 0) timerID = startTimer();
     e.target.classList.remove('cross__data_item-black');
     e.target.classList.toggle('cross__data_item-cross');
     if (sellSet.has(e.target.id)) sellSet.delete(e.target.id);
@@ -38,13 +39,15 @@ function fillData (newGame, cross_data) {
   
   function fillCell(e) {
   if (e.target.classList.contains('cross__data_item')) {
-    if (startTime === undefined) startTimer();
+    if (timerID === 0) timerID = startTimer();
     e.target.classList.toggle('cross__data_item-black');
     e.target.classList.remove('cross__data_item-cross');
     sellSet.has(e.target.id)? sellSet.delete(e.target.id) : sellSet.add(e.target.id);
   }
-  if ([...sellSet].sort().join() === [...resultSet].sort().join())
-    console.log('win');
+  if ([...sellSet].sort().join() === [...resultSet].sort().join()) {
+    loadModal(stopTimer(timerID));
+    timerID = 0;
+  }
 }
 }
 export default fillData;
