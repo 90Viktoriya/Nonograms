@@ -15,6 +15,17 @@
   align-items: center;
   background-color: var(--background_light);
 }
+.game__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.game__timer {
+  margin: 20px;
+  font-size: 32px;
+}
 .cross__wrapper {
   width: 100%;
   max-width: 400px;
@@ -29,7 +40,7 @@
 .cross__top_clue {
   border-top: 1px solid var(--border_dark);
   border-left: 1px solid var(--border_dark);
-  border-bottom: 2px solid var(--border_dark);
+  border-bottom: 3px solid var(--border_dark);
   grid-row-start: 1;
   grid-row-end: span var(--tclue_length);
   grid-column-start: calc(var(--lclue_length) + 1);
@@ -39,7 +50,7 @@
 .cross__left_clue {
   border-left: 1px solid var(--border_dark);
   border-top: 1px solid var(--border_dark);
-  border-right: 2px solid var(--border_dark);
+  border-right: 3px solid var(--border_dark);
   grid-column-start: 1;
   grid-column-end: span var(--lclue_length);
   grid-row-start: calc(var(--tclue_length) + 1);
@@ -66,14 +77,14 @@
   grid-column-start: 1;
   grid-column-end: calc(var(--lclue_length) + 1);
   grid-row-end: span 1;
-  border-bottom: 2px solid var(--border_dark);
+  border-bottom: 3px solid var(--border_dark);
 }
 .cross__border_right {
   display: flex;
   grid-row-start: 1;
   grid-row-end: calc(var(--tclue_length) + 1);
   grid-column-end: span 1;
-  border-right: 2px solid var(--border_dark);
+  border-right: 3px solid var(--border_dark);
 }
 .cross__data {
   grid-row-start: calc(var(--tclue_length) + 1);
@@ -81,8 +92,8 @@
   grid-column-start: calc(var(--lclue_length) + 1);
   grid-column-end: calc(var(--lclue_length) + 1 + var(--game_length));
   display: grid;
-  border-right: 2px solid var(--border_dark);
-  border-bottom: 2px solid var(--border_dark);
+  border-right: 3px solid var(--border_dark);
+  border-bottom: 3px solid var(--border_dark);
 }
 .cross__data_item {
   border-right: 1px solid var(--border_dark);
@@ -96,7 +107,7 @@
   grid-column-start: 1;
   grid-column-end: calc(var(--game_length) + 1);
   grid-row-end: span 1;
-  border-bottom: 2px solid var(--border_dark);
+  border-bottom: 3px solid var(--border_dark);
 }
 .cross__data_border_right {
   display: flex;
@@ -104,7 +115,7 @@
   grid-row-start: 1;
   grid-row-end: calc(var(--game_length) + 1);
   grid-column-end: span 1;
-  border-right: 2px solid var(--border_dark);
+  border-right: 3px solid var(--border_dark);
 }
 
 .cross__data_item-black {

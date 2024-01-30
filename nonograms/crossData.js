@@ -1,11 +1,12 @@
 import createElement from "./createElement.js";
-
+import { startTime, startTimer } from "./timer.js";
 let sellSet = new Set;
 
 
 function rightClick(e) {
   e.preventDefault();
   if (e.target.classList.contains('cross__data_item')) {
+    if (startTime === undefined) startTimer();
     e.target.classList.remove('cross__data_item-black');
     e.target.classList.toggle('cross__data_item-cross');
     if (sellSet.has(e.target.id)) sellSet.delete(e.target.id);
@@ -37,6 +38,7 @@ function fillData (newGame, cross_data) {
   
   function fillCell(e) {
   if (e.target.classList.contains('cross__data_item')) {
+    if (startTime === undefined) startTimer();
     e.target.classList.toggle('cross__data_item-black');
     e.target.classList.remove('cross__data_item-cross');
     sellSet.has(e.target.id)? sellSet.delete(e.target.id) : sellSet.add(e.target.id);
