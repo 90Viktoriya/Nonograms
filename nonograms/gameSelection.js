@@ -1,5 +1,6 @@
 import createElement from "./createElement.js";
 import data from "./data.json" assert { type: "json" };
+import {loadGame} from "./gameMain.js";
 
 function addSelection(name, key, checked = false) {
   let div = createElement('div', 'select__item_wrapper');
@@ -37,6 +38,10 @@ function loadList(value, picture) {
     }
   })
 }
+function loadRandom() {
+  let gameID = Math.floor(Math.random() * data.length);
+  loadGame(gameID);
+}
 function fillSelect(select_wrapper) {
   let difficult = createElement('fieldset', 'select__fieldset');
   difficult.append(createElement('legend', 'select__legend','Game difficulty'));
@@ -54,6 +59,7 @@ function fillSelect(select_wrapper) {
   let btnSelect = createElement('button', 'select__button', 'Select');
   let btnRandom = createElement('button', 'select__button', 'Random');
   let btnLoad = createElement('button', 'select__button', 'Load');
+  btnRandom.addEventListener('click', loadRandom);
   btns.append(btnSelect);
   btns.append(btnRandom);
   btns.append(btnLoad);

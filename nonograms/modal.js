@@ -1,7 +1,6 @@
 import createElement from "./createElement.js";
 
 function loadModal(time) {
-  console.log(time);
   let modal = createElement('div','modal__wrapper');
   document.body.append(modal);
   let modalData = createElement('div','modal__data');

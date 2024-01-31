@@ -15,6 +15,9 @@ function rightClick(e) {
 }
 function fillData (newGame, cross_data) {
   let count = 0;
+  stopTimer(timerID);
+  timerID = 0;
+  sellSet.clear();
   let resultSet = newGame.getResultSet();
   for (let i = 0; i < newGame.length; i += 1) {
     if ((i + 1) % 5 === 0 && i + 1 < newGame.length) {
@@ -34,6 +37,8 @@ function fillData (newGame, cross_data) {
       cross_data.append(data_item);
     }
   }
+  cross_data.removeEventListener('click', fillCell);
+  cross_data.removeEventListener('contextmenu', rightClick);
   cross_data.addEventListener('click', fillCell);
   cross_data.addEventListener('contextmenu', rightClick);
   

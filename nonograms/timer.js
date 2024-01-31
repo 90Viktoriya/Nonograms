@@ -21,6 +21,7 @@ export function stopTimer(timerID) {
   clearInterval(timerID);
   return Math.floor((new Date - startTime) / 1000);
 }
+
 function displayTimer(game_wrapper) {
   timer = createElement('time', 'game__timer','00:00');
   game_wrapper.append(timer);

@@ -3,6 +3,7 @@ import data from "./data.json" assert { type: "json" };
 class Game {
   constructor(gameId) {
     this.gameId = gameId;
+    this.name = data[this.gameId].name;
     this.length = data[this.gameId].result.length;
     this.LClue = this.getLClue();
     this.TClue = this.getTClue();
