@@ -1,6 +1,6 @@
 
 import createElement from "./createElement.js";
-import fillSelect from "./gameSelection.js";
+import fillSelect, { displayButtons } from "./gameSelection.js";
 import initGame from "./gameMain.js";
 
 
@@ -14,5 +14,10 @@ fillSelect(select_wrapper);
 main_wrapper.append(select_wrapper);
 let game_wrapper = initGame();
 main_wrapper.append(game_wrapper);
+let buttons_wrapper = createElement('div', 'buttons__wrapper');
+displayButtons(buttons_wrapper);
+main_wrapper.append(buttons_wrapper);
+
+
 
 

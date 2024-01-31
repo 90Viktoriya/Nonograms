@@ -57,9 +57,20 @@
   justify-content: center;
   align-items: center;
 }
+.game__wrapper-header{
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+}
 .game__timer {
   margin: 20px;
   font-size: 32px;
+}
+.cross__title {
+  margin-right: 50px;
 }
 .cross__wrapper {
   width: 100%;
@@ -193,6 +204,11 @@
   margin-top: 20px;
   padding: 10px;
   font-size: 32px;
+}
+.buttons__wrapper {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
 }
 
 
