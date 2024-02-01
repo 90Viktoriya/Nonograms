@@ -1,12 +1,12 @@
 import game from "./game.js";
 import fillClues from "./clues.js";
-import fillData, {showSolution} from "./gameData.js"
+import fillData, { showSolution, changeGame } from "./gameData.js"
 import displayTimer from "./timer.js";
 import createElement from "./createElement.js";
 
-let currentGameId;
+export let currentGameId;
 let game_wrapper = createElement('div', 'game__wrapper');
-let cross_data; /*= createElement('div','cross__data');*/
+let cross_data;
 let newGame;
 
 function clearWrapper() {
@@ -17,6 +17,12 @@ function clearWrapper() {
 
 export function showResult() {
   showSolution(newGame, cross_data);
+}
+export function loadSaved() {
+  let str = localStorage.getItem('gameSaved');
+  let gameSaved = JSON.parse(str);
+  loadGame(gameSaved['gameID']);
+  changeGame(cross_data, gameSaved);
 }
 export function loadGame(gameID = currentGameId) {
   currentGameId = gameID;

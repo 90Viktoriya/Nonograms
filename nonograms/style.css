@@ -133,6 +133,7 @@
   border-right: 3px solid var(--border_dark);
 }
 .cross__data {
+  background-color:white;
   grid-row-start: calc(var(--tclue_length) + 1);
   grid-row-end: calc(var(--tclue_length) + 1 + var(--game_length));
   grid-column-start: calc(var(--lclue_length) + 1);

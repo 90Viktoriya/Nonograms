@@ -1,21 +1,54 @@
 import createElement from "./createElement.js";
 
 let startTime;
+let timeDiffer = 0;
 let timer;
+
+function getDiffer00(diff) {
+  let result = {};
+  result['hour'] = ('0' + Math.floor(diff / 3600)).slice(-2);
+  result['minute'] = ('0' + Math.floor((diff % 3600) / 60)).slice(-2);
+  result['second'] = ('0' + Math.floor(diff % 60)).slice(-2);
+  return result;
+}
+function getDiffer(diff) {
+  let result = {};
+  result['hour'] = Math.floor(diff / 3600);
+  result['minute'] = Math.floor((diff % 3600) / 60);
+  result['second'] = Math.floor(diff % 60);
+  return result;
+}
+function displayTime (diff) {
+  let differ = getDiffer00(diff);
+
+  if (differ['hour'] !== '00')
+    timer.textContent = differ['hour'] + ':' + differ['minute'] + ':' + differ['second'];
+  else
+    timer.textContent = differ['minute'] + ':' + differ['second'];
+}
 export function startTimer() {
-  startTime = new Date();
+  let differ = getDiffer(timeDiffer);
+  let nowTime = new Date;
+  startTime = new Date(
+    nowTime.getFullYear(),
+    nowTime.getMonth(),
+    nowTime.getDate() - 1,
+    nowTime.getHours() + 23 - differ['hour'],
+    nowTime.getMinutes() + 59 - differ['minute'],
+    nowTime.getSeconds() + 60 - differ['second']
+  );
   let timerID = setInterval(() => {
     let diff = Math.floor((new Date - startTime) / 1000);
-    let hour = ('0' + Math.floor(diff / 3600)).slice(-2);
-    let minute = ('0' + Math.floor((diff % 3600) / 60)).slice(-2);
-    let second = ('0' + Math.floor(diff % 60)).slice(-2);
-
-    if (hour !== '00')
-      timer.textContent = hour + ':' + minute + ':' + second;
-    else
-      timer.textContent = minute + ':' + second;
+    displayTime(diff);
   }, 1000);
   return timerID;
+}
+export function getTime() {
+  return Math.floor((new Date - startTime) / 1000);
+}
+export function setTime(diff) {
+  timeDiffer = diff;
+  displayTime(diff);
 }
 export function stopTimer(timerID) {
   clearInterval(timerID);

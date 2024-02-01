@@ -1,6 +1,11 @@
 import createElement from "./createElement.js";
 import data from "./data.json" assert { type: "json" };
-import {loadGame, showResult} from "./gameMain.js";
+import {loadGame, loadSaved, showResult, currentGameId} from "./gameMain.js";
+import { getSets } from "./gameData.js";
+import { getTime } from "./timer.js";
+
+let btnLoad;
+let btnSave;
 
 function addSelection(name, key, checked = false, id) {
   let div = createElement('div', 'select__item_wrapper');
@@ -45,14 +50,29 @@ function loadSelect(e) {
     if (inputs[i].checked)
       loadGame(inputs[i].gameID);
   }
+  btnSave.disabled = true;
 }
 function loadRandom() {
   let gameID = Math.floor(Math.random() * data.length);
+  btnSave.disabled = true;
   loadGame(gameID);
 }
 function gameReset() {
+  btnSave.disabled = true;
   loadGame();
 }
+function loadResult() {
+  btnSave.disabled = true;
+  showResult();
+}
+function saveGame() {
+  let gameSaved = getSets();
+  gameSaved['time'] = getTime();
+  gameSaved['gameID'] = currentGameId;
+  localStorage.setItem('gameSaved', JSON.stringify(gameSaved));
+  btnLoad.disabled = false;
+}
+
 function fillSelect(select_wrapper) {
   let difficult = createElement('fieldset', 'select__fieldset');
   difficult.append(createElement('legend', 'select__legend','Game difficulty'));
@@ -69,10 +89,11 @@ function fillSelect(select_wrapper) {
   let btns = createElement('div', 'select__buttons');
   let btnSelect = createElement('button', 'select__button', 'Select');
   let btnRandom = createElement('button', 'select__button', 'Random');
-  let btnLoad = createElement('button', 'select__button', 'Continue last');
+  btnLoad = createElement('button', 'select__button', 'Continue last');
   btnSelect.picture = picture;
   btnSelect.addEventListener('click', loadSelect);
   btnRandom.addEventListener('click', loadRandom);
+  btnLoad.addEventListener('click', loadSaved);
   btnLoad.disabled = true;
   btns.append(btnSelect);
   btns.append(btnRandom);
@@ -80,14 +101,19 @@ function fillSelect(select_wrapper) {
   select_wrapper.append(btns);
 }
 export function displayButtons(buttons_wrapper) {
-  let btnSave = createElement('button', 'select__button', 'Save');
+  btnSave = createElement('button', 'select__button', 'Save');
+  btnSave.disabled = true;
   let btnReset = createElement('button', 'select__button', 'Reset');
   let btnSolution = createElement('button', 'select__button', 'Solution');
   buttons_wrapper.append(btnSave);
   buttons_wrapper.append(btnReset);
   buttons_wrapper.append(btnSolution);
   btnReset.addEventListener('click', gameReset);
-  btnSolution.addEventListener('click', showResult);
+  btnSolution.addEventListener('click', loadResult);
+  btnSave.addEventListener('click', saveGame);
 }
 
+export function enableSaveBtn() {
+  btnSave.disabled = false;
+}
 export default fillSelect;
