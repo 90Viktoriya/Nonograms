@@ -1,5 +1,6 @@
 :root {
   --cell_width: 30px;
+  --max_width: 600px;
   --lclue_length: 1;
   --tclue_length: 1;
   --game_length: 5;
@@ -59,7 +60,7 @@
 }
 .game__wrapper-header{
   width: 100%;
-  max-width: 400px;
+  max-width: var(--max_width);
   display: flex;
   flex-direction: row;
   justify-content: right;
@@ -74,11 +75,11 @@
 }
 .cross__wrapper {
   width: 100%;
-  max-width: 400px;
+  max-width: var(--max_width);
   display: grid;
   grid-template-columns: repeat(calc(var(--game_length) + var(--lclue_length)), 1fr);
   grid-template-rows: repeat(calc(var(--game_length) + var(--tclue_length)), 1fr);
-  --cell_width: calc(400px / calc(var(--game_length) + var(--lclue_length)));
+  --cell_width: calc(var(--max_width) / calc(var(--game_length) + var(--lclue_length)));
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
@@ -225,9 +226,27 @@
   font-size: 20px;
 }
 .option__sound_off {
-
+  background: var(--background_light);
 }
-
-
+.modal__table_wrapper {
+  width: 50%;
+}
+.modal__table_item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+}
+.modal__table_item-name {
+  width: 33%;
+}
+.modal__table_item-level {
+  width: 33%;
+}
+.modal__table_item-time {
+  width: 33%;
+}
 
 

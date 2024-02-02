@@ -4,6 +4,7 @@ class Game {
   constructor(gameId) {
     this.gameId = gameId;
     this.name = data[this.gameId].name;
+    this.level = data[this.gameId].level;
     this.length = data[this.gameId].result.length;
     this.LClue = this.getLClue();
     this.TClue = this.getTClue();

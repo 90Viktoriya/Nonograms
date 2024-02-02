@@ -1,6 +1,6 @@
 import createElement from "./createElement.js";
 import data from "./data.json" assert { type: "json" };
-import {loadGame, loadSaved, showResult, currentGameId} from "./gameMain.js";
+import {loadGame, loadSaved, showResult, currentGameId, showResultTable} from "./gameMain.js";
 import { getSets } from "./gameData.js";
 import { getTime } from "./timer.js";
 
@@ -94,7 +94,8 @@ function fillSelect(select_wrapper) {
   btnSelect.addEventListener('click', loadSelect);
   btnRandom.addEventListener('click', loadRandom);
   btnLoad.addEventListener('click', loadSaved);
-  btnLoad.disabled = true;
+  if (JSON.parse(localStorage.getItem('gameSaved')) === null)
+    btnLoad.disabled = true;
   btns.append(btnSelect);
   btns.append(btnRandom);
   btns.append(btnLoad);
@@ -105,12 +106,15 @@ export function displayButtons(buttons_wrapper) {
   btnSave.disabled = true;
   let btnReset = createElement('button', 'select__button', 'Reset');
   let btnSolution = createElement('button', 'select__button', 'Solution');
+  let btnResults = createElement('button', 'select__button', 'Show last result');
   buttons_wrapper.append(btnSave);
   buttons_wrapper.append(btnReset);
   buttons_wrapper.append(btnSolution);
+  buttons_wrapper.append(btnResults);
   btnReset.addEventListener('click', gameReset);
   btnSolution.addEventListener('click', loadResult);
   btnSave.addEventListener('click', saveGame);
+  btnResults.addEventListener('click', showResultTable);
 }
 
 export function enableSaveBtn() {

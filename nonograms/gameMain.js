@@ -1,8 +1,9 @@
 import game from "./game.js";
 import fillClues from "./clues.js";
-import fillData, { showSolution, changeGame, muteAudio } from "./gameData.js"
-import displayTimer from "./timer.js";
+import fillData, { showSolution, changeGame, muteAudio, clearTimerID } from "./gameData.js"
+import displayTimer, { stopTimer } from "./timer.js";
 import createElement from "./createElement.js";
+import {showResultModal} from "./modal.js";
 
 export let currentGameId;
 let game_wrapper = createElement('div', 'game__wrapper');
@@ -20,8 +21,6 @@ export function changeSoundMode(e) {
     if (e.target.classList.contains('option__sound_off')) {
       e.target.textContent = 'sound OFF';
     } else e.target.textContent = 'sound ON';
-    
-    
   }
 }
 export function showResult() {
@@ -47,12 +46,26 @@ export function loadGame(gameID = currentGameId) {
   fillData(newGame, cross_data);
   cross_wrapper.append(cross_data);
   game_wrapper.append(cross_wrapper);
+  let option_wrapper = createElement('div', 'option__wrapper');
+  game_wrapper.append(option_wrapper);
+  let soundBtn = createElement('button', 'option__sound_btn', 'sound ON');
+  soundBtn.addEventListener('click', changeSoundMode);
+  option_wrapper.append(soundBtn);
 }
 
 function initGame() {
   currentGameId = 0;
   loadGame(currentGameId);
   return game_wrapper;
+}
+
+export function showResultTable() {
+  let timerID = clearTimerID();
+  let time;
+  if (timerID === undefined)
+    time = 0;
+  else time = stopTimer(timerID);
+  showResultModal(time);
 }
 
 export default initGame;

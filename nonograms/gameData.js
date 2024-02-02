@@ -11,6 +11,7 @@ let sounds = {'black': new Audio('./audio/black.mp3'),
 'cross': new Audio('./audio/cross.mp3'),
 'win': new Audio('./audio/win.mp3')};
 
+
 function resetAudio() {
   for (let i = 0; i < Object.keys(sounds).length; i +=1) {
     Object.values(sounds)[i].pause();
@@ -40,21 +41,34 @@ function rightClick(e) {
     }
 
   }
-  checkResult(e.target.closest('.cross__data'));
+  let gameName = e.target.closest('.cross__data').gameName;
+  let level = e.target.closest('.cross__data').gameLevel;
+  checkResult(e.target.closest('.cross__data'), gameName, level);
 }
-function checkResult(cross_data) {
+function checkResult(cross_data, gameName, level) {
   if ([...cellSet].sort().join() === [...resultSet].sort().join()) {
     resetAudio();
     sounds['win'].play();
-    loadModal(stopTimer(timerID));
+    let time = stopTimer(timerID);
+    loadModal(time);
+    let winresults = JSON.parse(localStorage.getItem('winresults') || '[]');
+    winresults.push(Array.from([gameName, level , time]));
+    if (winresults.length > 5)
+      winresults.shift();
+    localStorage.setItem('winresults', JSON.stringify(winresults));
     clearData(cross_data);
   }
 }
-function initTimer () {
+function initTimer() {
   if (timerID === undefined) {
     enableSaveBtn();
     timerID = startTimer();
   }
+}
+export function clearTimerID() {
+  let oldID = timerID;
+  timerID = undefined;
+  return oldID;
 }
 function fillCell(e) {
   if (e.target.classList.contains('cross__data_item')) {
@@ -72,11 +86,14 @@ function fillCell(e) {
       cellSet.add(e.target.id);
     }
   }
-  checkResult(e.target.closest('.cross__data'));
+  let gameName = e.target.closest('.cross__data').gameName;
+  let level = e.target.closest('.cross__data').gameLevel;
+  checkResult(e.target.closest('.cross__data'), gameName, level);
 }
 
 function clearData(cross_data) {
   stopTimer(timerID);
+  /*setTime(0, false);*/
   timerID = undefined;
   cellSet.clear();
   crossSet.clear();
@@ -106,6 +123,8 @@ function fillData (newGame, cross_data) {
   let count = 0;
   resultSet = newGame.getResultSet();
   clearData(cross_data);
+  cross_data.gameName = newGame.name;
+  cross_data.gameLevel = newGame.level;
   for (let i = 0; i < newGame.length; i += 1) {
     if ((i + 1) % 5 === 0 && i + 1 < newGame.length) {
       let border_item = createElement('div','cross__data_border_bottom');
@@ -126,6 +145,7 @@ function fillData (newGame, cross_data) {
   }
   cross_data.addEventListener('click', fillCell);
   cross_data.addEventListener('contextmenu', rightClick);
+
 }
 export function changeGame(cross_data, gameSaved) {
 

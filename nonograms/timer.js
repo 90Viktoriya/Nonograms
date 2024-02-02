@@ -46,9 +46,11 @@ export function startTimer() {
 export function getTime() {
   return Math.floor((new Date - startTime) / 1000);
 }
-export function setTime(diff) {
+export function setTime(diff, display = true) {
   timeDiffer = diff;
-  displayTime(diff);
+  if (display) {
+    displayTime(diff);
+  }
 }
 export function stopTimer(timerID) {
   clearInterval(timerID);
