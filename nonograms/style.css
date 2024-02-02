@@ -211,6 +211,22 @@
   display: flex;
   flex-direction: column;
 }
+.option__wrapper {
+  width: 40%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.option__sound_btn {
+  margin: 10px;
+  width: 40%;
+  background: var(--background_dark);
+  padding: 10px;
+  font-size: 20px;
+}
+.option__sound_off {
+
+}
 
 
 

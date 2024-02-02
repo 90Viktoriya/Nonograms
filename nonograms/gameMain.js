@@ -1,6 +1,6 @@
 import game from "./game.js";
 import fillClues from "./clues.js";
-import fillData, { showSolution, changeGame } from "./gameData.js"
+import fillData, { showSolution, changeGame, muteAudio } from "./gameData.js"
 import displayTimer from "./timer.js";
 import createElement from "./createElement.js";
 
@@ -14,7 +14,16 @@ function clearWrapper() {
     game_wrapper.lastChild.remove();
   }
 }
-
+export function changeSoundMode(e) {
+  if (e.target.classList.contains('option__sound_btn')) {
+    muteAudio(e.target.classList.toggle('option__sound_off'));
+    if (e.target.classList.contains('option__sound_off')) {
+      e.target.textContent = 'sound OFF';
+    } else e.target.textContent = 'sound ON';
+    
+    
+  }
+}
 export function showResult() {
   showSolution(newGame, cross_data);
 }

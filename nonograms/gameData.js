@@ -6,7 +6,22 @@ let cellSet = new Set;
 let crossSet = new Set;
 let timerID = undefined;
 let resultSet = new Set;
+let sounds = {'black': new Audio('./audio/black.mp3'),
+'white': new Audio('./audio/white.mp3'),
+'cross': new Audio('./audio/cross.mp3'),
+'win': new Audio('./audio/win.mp3')};
 
+function resetAudio() {
+  for (let i = 0; i < Object.keys(sounds).length; i +=1) {
+    Object.values(sounds)[i].pause();
+    Object.values(sounds)[i].currentTime = 0;
+  }
+}
+export function muteAudio(flag) {
+  for (let i = 0; i < Object.keys(sounds).length; i +=1) {
+    Object.values(sounds)[i].muted = flag;
+  }
+}
 function rightClick(e) {
   e.preventDefault();
   if (e.target.classList.contains('cross__data_item')) {
@@ -14,12 +29,23 @@ function rightClick(e) {
     e.target.classList.remove('cross__data_item-black');
     e.target.classList.toggle('cross__data_item-cross');
     if (cellSet.has(e.target.id)) cellSet.delete(e.target.id);
-    crossSet.has(e.target.id)? crossSet.delete(e.target.id) : crossSet.add(e.target.id);
+    if (crossSet.has(e.target.id)) {
+      resetAudio();
+      sounds['white'].play();
+      crossSet.delete(e.target.id);
+    } else {
+      resetAudio();
+      sounds['cross'].play();
+      crossSet.add(e.target.id);
+    }
+
   }
   checkResult(e.target.closest('.cross__data'));
 }
 function checkResult(cross_data) {
   if ([...cellSet].sort().join() === [...resultSet].sort().join()) {
+    resetAudio();
+    sounds['win'].play();
     loadModal(stopTimer(timerID));
     clearData(cross_data);
   }
@@ -36,7 +62,15 @@ function fillCell(e) {
     e.target.classList.toggle('cross__data_item-black');
     e.target.classList.remove('cross__data_item-cross');
     if (crossSet.has(e.target.id)) crossSet.delete(e.target.id);
-    cellSet.has(e.target.id)? cellSet.delete(e.target.id) : cellSet.add(e.target.id);
+    if (cellSet.has(e.target.id)) {
+      resetAudio();
+      sounds['white'].play();
+      cellSet.delete(e.target.id); 
+    } else {
+      resetAudio();
+      sounds['black'].play();
+      cellSet.add(e.target.id);
+    }
   }
   checkResult(e.target.closest('.cross__data'));
 }
