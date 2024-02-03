@@ -42,9 +42,10 @@ export function showResultModal(time) {
   
   let winresults = JSON.parse(localStorage.getItem('winresults'));
   if (winresults) {
+    modalData.append(createElement('h2','modal__result', 'High score'));
     modalData.append(displayTable(winresults));
   } else {
-    modalData.append(createElement('div','modal__result', 'К сожалению выигрышей пока нет.'));
+    modalData.append(createElement('div','modal__result', 'The high score table is empty'));
   }
   let modalbtn = createElement('button','modal__button', 'Close');
   modalbtn.addEventListener('click', (e) => {

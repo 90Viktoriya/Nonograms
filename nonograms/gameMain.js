@@ -37,7 +37,7 @@ export function loadGame(gameID = currentGameId) {
   newGame = new game(currentGameId);
   clearWrapper();
   let game_wrapper2 = createElement('div', 'game__wrapper-header');
-  game_wrapper2.append(createElement('h2', 'cross__title', newGame.name));
+  game_wrapper2.append(createElement('h1', 'cross__title', newGame.name));
   displayTimer(game_wrapper2);
   game_wrapper.append(game_wrapper2);
   let cross_wrapper = createElement('div', 'cross__wrapper');
