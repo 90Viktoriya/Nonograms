@@ -93,7 +93,7 @@ function fillCell(e) {
 
 function clearData(cross_data) {
   stopTimer(timerID);
-  /*setTime(0, false);*/
+  setTime(0, false);
   timerID = undefined;
   cellSet.clear();
   crossSet.clear();

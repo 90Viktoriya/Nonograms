@@ -254,10 +254,10 @@
 
 .cross__data_item-black {
   background-color: black;
-  border-color: black;
+  border-color: var(--border_dark);
 }
 .cross__data_item-cross {
-  border-color: black;
+  border-color: var(--border_dark);
   background:
   linear-gradient(45deg, transparent 48%, #000 48%, #000 52%, transparent 52%),
   linear-gradient(-45deg, transparent 48%, #000 48%, #000 52%, transparent 52%);
