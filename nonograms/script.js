@@ -1,11 +1,15 @@
 
 import createElement from "./createElement.js";
 import fillSelect, { displayButtons } from "./gameSelection.js";
-import initGame from "./gameMain.js";
+import initGame , { addOptions } from "./gameMain.js";
 
 
 document.body.classList.add('body__wrapper');
-document.body.append(createElement('h1', 'game_title', 'Nonograms'));
+document.body.classList.add('theme_light');
+let title_wrapper = createElement('div', 'game__title_wrapper');
+document.body.append(title_wrapper);
+title_wrapper.append(createElement('h1', 'game__title', 'Nonograms'));
+title_wrapper.append(addOptions());
 let main_wrapper = createElement('div', 'main__wrapper');
 document.body.append(main_wrapper);
 let select_wrapper = createElement('div', 'select__wrapper');

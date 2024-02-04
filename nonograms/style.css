@@ -4,10 +4,36 @@
   --lclue_length: 1;
   --tclue_length: 1;
   --game_length: 5;
-  /*--background_light: #FDD48A;*/
+}
+.theme_light {
   --background_light: rgba(231, 216, 169, 0.6);
-  --background_dark:#5A7A0A;
-  --border_dark: #513C2F;
+  --background_dark:#83d350;
+  --background_disabled: rgba(131, 211, 80, 0.5);
+  --border_dark: #513c2f;
+  --checked_color: #fab036;
+  --background_image: url(./img/background.jpg);
+  --sound_on: url(./img/sound-on.svg);
+  --sound_off: url(./img/sound-off.svg);
+  --theme: url(./img/light_mode.svg);
+  --background_cell: white;
+  --time_background: none;
+  --btn_color:
+  color: #000;
+}
+.theme_dark {
+  --background_light:rgba(81, 60, 47, 0.7);
+  --background_dark:#5a7a0a;
+  --background_disabled: rgba(253, 212, 138, 0.5);
+  --border_dark: #fdd48a;
+  --checked_color: #513C2F;
+  --background_cell: #513c2f;
+  --sound_on: url(./img/sound-on_dark.svg);
+  --sound_off: url(./img/sound-off_dark.svg);
+  --background_image: url(./img/background_dark.jpg);
+  --theme: url(./img/dark_mode.svg);
+  --btn_color:#FAB036;
+  --time_background: rgba(81, 60, 47, 0.7);
+  color: #FAB036;
 }
 
 .body__wrapper {
@@ -21,7 +47,17 @@
   background-position-y: top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(./img/background.jpg);
+  background-image: var(--background_image);
+}
+.game__title_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game__title {
+  width: 60%;
+  text-align: end;
 }
 .main__wrapper {
   width: 100%;
@@ -56,6 +92,9 @@
   font-size: 20px;
   margin: 10px;
 }
+.select__item {
+  accent-color: var(--checked_color);
+}
 .select__label {
   margin-left: 5px;
 }
@@ -70,6 +109,10 @@
   padding: 10px 20px;
   font-size: 20px;
   border-radius: 10px;
+  color: var(--btn_color);
+}
+.select__button:disabled {
+  background-color: var(--background_disabled);
 }
 .game__wrapper_add {
   width: 65%;
@@ -77,6 +120,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 .game__wrapper {
   width: 70%;
@@ -97,9 +141,15 @@
 .game__timer {
   margin: 20px;
   font-size: 32px;
+  background-color: var(--time_background);
+  padding: 0 20px;
+  border-radius: 20px;
 }
 .cross__title {
   margin: 0 50px;
+  background-color: var(--time_background);
+  padding: 0 20px;
+  border-radius: 20px;
 }
 .cross__wrapper {
   width: 100%;
@@ -168,7 +218,7 @@
   border-right: 3px solid var(--border_dark);
 }
 .cross__data {
-  background-color:white;
+  background-color: var(--background_cell);
   grid-row-start: calc(var(--tclue_length) + 1);
   grid-row-end: calc(var(--tclue_length) + 1 + var(--game_length));
   grid-column-start: calc(var(--lclue_length) + 1);
@@ -245,6 +295,7 @@
   padding: 10px;
   font-size: 32px;
   border-radius: 10px;
+  color: var(--btn_color);
 }
 .buttons__wrapper {
   width: 31%;
@@ -252,22 +303,36 @@
   flex-direction: column;
 }
 .option__wrapper {
-  width: 60%;
+  width: 40%;
   display: flex;
-  justify-content: end;
-  align-items: center;
+  margin-left: 40px;
+  justify-content: start;
+  align-items: start;
 }
 .option__sound_btn {
   margin: 10px;
-  width: 40%;
-  background: var(--background_dark);
+  width: 24px;
+  height: 24px;
+  background-image: var(--sound_on);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 10px;
-  font-size: 20px;
-  border-radius: 10px;
 }
 .option__sound_off {
-  background: var(--background_light);
+  background-image: var(--sound_off);
 }
+.option__theme_btn {
+  margin: 10px;
+  width: 24px;
+  height: 24px;
+  background-image: var(--theme);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 10px;
+}
+
 .modal__table_wrapper {
   width: 50%;
 }

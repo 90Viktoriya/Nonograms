@@ -15,14 +15,21 @@ function clearWrapper() {
     game_wrapper.lastChild.remove();
   }
 }
-export function changeSoundMode(e) {
+function changeSoundMode(e) {
   if (e.target.classList.contains('option__sound_btn')) {
     muteAudio(e.target.classList.toggle('option__sound_off'));
     if (e.target.classList.contains('option__sound_off')) {
-      e.target.textContent = 'sound OFF';
-    } else e.target.textContent = 'sound ON';
+      e.target.backgroundImage = 'url(./img/sound-on.png)';
+    } else e.target.backgroundImage = 'url(./img/sound-ff.png)';
   }
 }
+function changeThemeMode(e) {
+  if (e.target.classList.contains('option__theme_btn')) {
+    document.body.classList.toggle('theme_dark');
+    document.body.classList.toggle('theme_light');
+  }
+}
+
 export function showResult() {
   showSolution(newGame, cross_data);
 }
@@ -46,11 +53,17 @@ export function loadGame(gameID = currentGameId) {
   fillData(newGame, cross_data);
   cross_wrapper.append(cross_data);
   game_wrapper.append(cross_wrapper);
+}
+export function addOptions() {
   let option_wrapper = createElement('div', 'option__wrapper');
   game_wrapper.append(option_wrapper);
-  let soundBtn = createElement('button', 'option__sound_btn', 'sound ON');
+  let soundBtn = createElement('div', 'option__sound_btn');
   soundBtn.addEventListener('click', changeSoundMode);
+  let themeBtn = createElement('div', 'option__theme_btn');
+  themeBtn.addEventListener('click', changeThemeMode);
+  option_wrapper.append(themeBtn);
   option_wrapper.append(soundBtn);
+  return option_wrapper;
 }
 
 function initGame() {
