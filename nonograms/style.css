@@ -1,6 +1,6 @@
 :root {
   --cell_width: 30px;
-  --max_width: 500px;
+  --max_width: 600px;
   --lclue_length: 1;
   --tclue_length: 1;
   --game_length: 5;
@@ -72,6 +72,7 @@
   align-items: center;
   width: 30%;
   font-size: 24px;
+  margin: 0px 10px;
 }
 .select__fieldset_wrapper {
   display: flex;
@@ -101,11 +102,12 @@
 .select__buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .select__button {
   background: var(--background_dark);
-  margin-top: 20px;
+  margin: 20px 10px 0px 10px;
   padding: 10px 20px;
   font-size: 20px;
   border-radius: 10px;
@@ -298,7 +300,7 @@
   color: var(--btn_color);
 }
 .buttons__wrapper {
-  width: 31%;
+  width: 30%;
   display: flex;
   flex-direction: column;
 }
@@ -357,27 +359,11 @@
   margin-top: 15px;
 }
 @media all and (max-width: 1200px) {
-  :root {
-    --max_width: 400px;
-  }
-  .select__buttons {
-    flex-direction: column;
-    width: 70%;
-  }
-  .select__item_wrapper {
-    margin: 5px;
-  }
   .modal__table_wrapper {
     width: 85%;
   }
 }
-@media all and (max-width: 950px) {
-  :root {
-    --max_width: 450px;
-  }
-  body.body__wrapper {
-    background-position-x: -450px;
-  }
+@media all and (max-width: 1060px) {
   .main__wrapper {
     flex-direction: column;
   }
@@ -391,7 +377,6 @@
     flex-direction: row;
     width: 100%;
     justify-content: center;
-    gap: 20px;
   }
   .select__button {
     width: 200px;
@@ -403,7 +388,10 @@
     width: 80%;
   }
 }
-@media all and (max-width: 700px) {
+@media all and (max-width: 900px) {
+  body.body__wrapper {
+    background-position-x: -450px;
+  }
   .game__wrapper_add {
     flex-direction: column;
   }
@@ -418,7 +406,7 @@
     margin-bottom: 20px;
   }
 }
-@media all and (max-width: 650px) {
+@media all and (max-width: 770px) {
   .select__fieldset {
     width: 97%;
   }
@@ -430,5 +418,8 @@
   }
   .modal__table_wrapper {
     width: 95%;
+  }
+  .game__wrapper {
+    width: 100%;
   }
 }
