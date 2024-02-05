@@ -33,11 +33,9 @@ function changeThemeMode(e) {
 export function showResult() {
   showSolution(newGame, cross_data);
 }
-export function loadSaved() {
-  let str = localStorage.getItem('gameSaved');
-  let gameSaved = JSON.parse(str);
-  loadGame(gameSaved['gameID']);
-  changeGame(cross_data, gameSaved);
+export function loadSaved(game) {
+  loadGame(game['gameID']);
+  changeGame(cross_data, game);
 }
 export function loadGame(gameID = currentGameId) {
   currentGameId = gameID;

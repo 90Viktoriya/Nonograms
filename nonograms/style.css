@@ -369,6 +369,11 @@
 .modal__result {
   margin-top: 15px;
 }
+@media all and (max-width: 1240px) {
+ .select__buttons .select__button {
+  width: 217px;
+ }
+}
 @media all and (max-width: 1200px) {
   .modal__table_wrapper {
     width: 85%;
@@ -438,5 +443,8 @@
 @media all and (max-width: 550px) {
   :root {
   --max_width: 480px;
-}
+  }
+  .select__buttons .select__button {
+    width: auto;
+  }
 }
