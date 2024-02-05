@@ -139,6 +139,13 @@ function fillData (newGame, cross_data) {
       data_item.id = count;
       data_item.style.gridColumnStart = j + 1;
       data_item.style.gridRowStart = i + 1;
+      if ((j + 1) % 5 === 0) {
+        data_item.style.borderRight = 'none';
+      }
+      if ((i + 1) % 5 === 0) {
+        /*data_item.style.borderRight = 'none';*/
+        data_item.style.borderBottom = 'none';
+      }
       count += 1;
       cross_data.append(data_item);
     }
